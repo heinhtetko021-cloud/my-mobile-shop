@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mobile World</title>
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f6; 
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        
+        body.dark-mode {
+            background-color: #121212; /* */
+            color: #ffffff;
+        }
+
+        header {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 20px;
+            padding: 20px 50px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .dark-mode header {
+            background-color: #1f1f1f; /* */
+            color: white;
+        }
+
+        /* Product Grid */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Product Card */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s; 
+        }
+
+        .dark-mode .product-card {
+            background-color: #1e1e1e; /* */
+            color: white;
+            border: 1px solid #333;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            width: 100%; 
+            max-width: 180px;
+            height: auto;
+            margin: 0 auto 15px;
+        }
+
+        .price {
+            color: #e44d26; 
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        button.view-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: auto; 
+        }
+
+        input[type="text"] {
+            padding: 8px 15px;
+            border-radius: 20px; 
+            border: 1px solid #ddd;
+            outline: none;
+            width: 200px;
+        }
+
+        .dark-mode input[type="text"] {
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin: 0; font-size: 24px;">HEIN MOBILE WORLD</h1>
+
+    <p style="margin: 0; font-size: 14px; line-height: 1.4;">
+        Address: 2F-204, Myanmar Plaza 192, Yangon<br>
+        Hours: Open · Closes 7PM<br>
+        Phone: 09 45222 8886
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <input type="text" placeholder="Search phones...">
+        <button id="mode-toggle" style="padding: 8px 15px; cursor:pointer; border-radius: 20px; border: 1px solid #ddd;">🌙 Dark Mode</button>
+    </div>
+
+    <div id="cart-container" style="font-size: 20px; position: relative; cursor: pointer;">
+    🛒 <span id="cart-count" style="background: red; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; position: absolute; top: -10px; right: -10px;">0</span>
+
+    </div>
+
+</header>
+
+<div class="product-container">
+    <div class="product-card">
+        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg" alt="iPhone 15"> <h3>iPhone 15 Pro</h3>
+        <p class="price">4,500,000 MMK</p>
+        
+        <a href="https://www.gsmarena.com/apple_iphone_15_pro_max-12548.php">
+        <button class="view-btn">View Details</button>
+        </a>
+
+        <br>
+        
+        <button class="add-btn" onclick="addToCart()" style="background-color:darkgray ; color:white; border:none;padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
+            ADD to Cart
+        </button>
+
+    </div>
+
+    <div class="product-card">
+        <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s25-ultra-sm-s938-1.jpg" alt="Samsung S25">
+        <h3>Samsung S25 Ultra</h3>
+        <p class="price">4,200,000 MMK</p>
+        
+        <a href="https://www.gsmarena.com/samsung_galaxy_s25_ultra-13322.php">
+        <button class="view-btn">View Details</button>
+        </a>
+        
+        <br>
+        
+        <button class="add-btn" onclick="addToCart()" style="background-color:darkgray ; color:white; border:none;
+        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
+            ADD to Cart
+        </button>
+    </div>
+    <div class="product-card">
+        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-17-pro-max-3.jpg" alt="Xiaomi 17">
+        <h3>Xiaomi 17 Pro Max</h3>
+        <p class="price">2,800,000 MMK</p>
+
+        <a href="https://www.gsmarena.com/xiaomi_17_pro_max_5g-14181.php">
+        <button class="view-btn">View Details</button>
+        </a>
+
+        <br>
+        
+        <button class="add-btn" onclick="addToCart()" style="background-color:darkgray ; color:white; border:none;
+        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
+            ADD to Cart
+        </button>
+    </div>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            toggleBtn.innerHTML = "☀️ Light Mode";
+        } else {
+            toggleBtn.innerHTML = "🌙 Dark Mode";
+        }
+    });
+    
+const searchInput = document.querySelector('input[type="text"]');
+const cards = document.querySelectorAll('.product-card');
+
+searchInput.addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase();
+    cards.forEach(card => {
+        const isVisible = card.querySelector('h3').innerText.toLowerCase().includes(value);
+        card.style.display = isVisible ? "flex" : "none";
+    });
+});
+    let count = 0;
+    function addToCart() {
+        count++;
+        document.getElementById('cart-count').innerText = count;
+        alert("Already add to your card!");
+    }
+</script>
+
+</body>
+</html>
