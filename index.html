@@ -261,6 +261,48 @@ input[type="text"] {
 #telegram-contact:hover {
     transform: scale(1.1); 
 }
+
+@media screen and (max-width: 768px) {
+    
+    header {
+        flex-direction: column !important;
+        padding: 20px 10px !important;
+        text-align: center !important;
+    }
+
+    header div {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px !important;
+    }
+
+    header input {
+        width: 90% !important;
+    }
+
+    
+    .product-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+    }
+
+    
+    #telegram-contact {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        background: #0088cc;
+        padding: 8px;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 10000;
+    }
+
+    #telegram-contact span {
+        display: none !important;
+    }
+}
     
     </style>
 </head>
