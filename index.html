@@ -805,12 +805,11 @@ input[type="text"] {
 </footer>
 
 <script>
-   
+
     const toggleBtn = document.getElementById('mode-toggle');
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         
-       
         if(document.body.classList.contains('dark-mode')) {
             toggleBtn.innerText = "☀️ Light Mode";
         } else {
@@ -835,8 +834,12 @@ searchInput.addEventListener('input', (e) => {
         document.getElementById('cart-count').innerText = count;
         alert("Already add to your card!");
     }
+
     
 function showCheckout(modelName, amount) {
+    
+    history.pushState({view:'checkout'}, "Checkout", "#checkout");
+
     document.getElementById('checkout-section').style.display = 'block';
     
     document.getElementById('phone-model').value = modelName;
