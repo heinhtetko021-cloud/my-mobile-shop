@@ -313,7 +313,7 @@ input[type="text"] {
 
     <p style="margin: 0; font-size: 14px; line-height: 1.4;">
         Address: 2F-204, Myanmar Plaza 192, Yangon<br>
-        Hours: Open · Closes 7PM<br>
+        Hours: Open 6AM Closes 7PM<br>
         Phone: 09 45222 8886
     </p>
 
@@ -714,12 +714,12 @@ input[type="text"] {
 
         <br>
         
-        <button class="add-btn" onclick="closeCheckout('Google Pixel 10 Pro',3500000)" style="background-color:darkgray ; color:white; border:none;
+        <button class="add-btn" onclick="showCheckout('Google Pixel 10 Pro',3500000)" style="background-color:darkgray ; color:white; border:none;
         padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
             Buy Now
         </button>
     </div>
-
+    
 </div>
     
     <section id="checkout-section" style="display:none; padding: 50px;">
@@ -804,101 +804,99 @@ input[type="text"] {
     </div>
 </footer>
 
-<script>
 
+<script>
+    
     const toggleBtn = document.getElementById('mode-toggle');
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+        toggleBtn.innerText = document.body.classList.contains('dark-mode') ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    // Search Functionality
+    const searchInput = document.querySelector('input[type="text"]');
+    const cards = document.querySelectorAll('.product-card');
+    searchInput.addEventListener('input', (e) => {
+        const value = e.target.value.toLowerCase();
+        cards.forEach(card => {
+            const isVisible = card.querySelector('h3').innerText.toLowerCase().includes(value);
+            card.style.display = isVisible ? "flex" : "none";
+        });
+    });
+
+    function showCheckout(modelName, amount) {
+        history.pushState({view:'checkout'}, "Checkout", "#checkout");
+        document.getElementById('checkout-section').style.display = 'block';
+        document.getElementById('phone-model').value = modelName;
+        document.getElementById('order-amount').value = amount;
+        window.scrollTo({top: document.getElementById('checkout-section').offsetTop, behavior: 'smooth'});
+    }
+
+    function closeCheckout() {
+        document.getElementById('checkout-section').style.display = 'none';
+    }
+
+    function generateVoucher() {
+        const name = document.getElementById('user-name').value;
+        const phone = document.getElementById('user-phone').value;
+        const address = document.getElementById('user-address').value;
+        const method = document.getElementById('payment-method').value;
+        const amount = document.getElementById('order-amount').value;
+        const model = document.getElementById('phone-model').value; 
+
+        if(name === "" || phone === "" || address === "") {
+            alert("Please fill all information!");
+            return; 
+        }
+
+        confirmOrder(name, phone, address, model, amount);
+
+        document.getElementById('v-date').innerText = new Date().toLocaleString();
+        document.getElementById('v-name').innerText = name;
+        document.getElementById('v-phone').innerText = phone;
+        document.getElementById('v-address').innerText = address;
+        document.getElementById('v-method').innerText = method;
+        document.getElementById('v-amount').innerText = amount;
+        document.getElementById('v-model').innerText = model;
+
         
-        if(document.body.classList.contains('dark-mode')) {
-            toggleBtn.innerText = "☀️ Light Mode";
+        document.getElementById('voucher-modal').style.display = 'flex';
+    }
+
+    function confirmOrder(name, phone, address, model, amount) {
+        const token = "7838934638:AAFqT4Bi94xRsPOBFhUg4haiLVTnhdmwU_c"; 
+        const chat_id = "7764154754"; 
+
+        
+        const message = `📱 *New Order Received!*\n\n` +
+                        `📦 *Model:* ${model}\n` +
+                        `💰 *Price:* ${amount} MMK\n` +
+                        `👤 *Name:* ${name}\n` +
+                        `📞 *Phone:* ${phone}\n` +
+                        `🏠 *Address:* ${address}`;
+
+        const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+        fetch(url).then(response => {
+            if (response.ok) {
+                console.log("Order sent to Telegram successfully!");
+            }
+        }).catch(err => console.error("Telegram error:", err));
+    }
+
+    function closeVoucher() {
+        document.getElementById('voucher-modal').style.display = 'none';
+        document.getElementById('checkout-section').style.display = 'none'; 
+    }
+
+    document.getElementById('payment-method').addEventListener('change', function() {
+        const shopNumberInput = document.getElementById('shop-payment-number');
+        if (this.value === 'KBZ PAY') {
+            shopNumberInput.value = '09 69245 4680 (Kpay Name)';
         } else {
-            toggleBtn.innerText = "🌙 Dark Mode";
+            shopNumberInput.value = '09 42000 3781 (Wave Name)';
         }
     });
-
-    
-const searchInput = document.querySelector('input[type="text"]');
-const cards = document.querySelectorAll('.product-card');
-
-searchInput.addEventListener('input', (e) => {
-    const value = e.target.value.toLowerCase();
-    cards.forEach(card => {
-        const isVisible = card.querySelector('h3').innerText.toLowerCase().includes(value);
-        card.style.display = isVisible ? "flex" : "none";
-    });
-});
-    let count = 0;
-    function addToCart() {
-        count++;
-        document.getElementById('cart-count').innerText = count;
-        alert("Already add to your card!");
-    }
-
-    
-function showCheckout(modelName, amount) {
-    
-    history.pushState({view:'checkout'}, "Checkout", "#checkout");
-
-    document.getElementById('checkout-section').style.display = 'block';
-    
-    document.getElementById('phone-model').value = modelName;
-    
-    document.getElementById('order-amount').value = amount;
-    
-    window.scrollTo({top: document.getElementById('checkout-section').offsetTop, behavior: 'smooth'});
-}
-
-function closeCheckout() {
-    document.getElementById('checkout-section').style.display = 'none';
-}
-
-
-function generateVoucher() {
-    
-    const name = document.getElementById('user-name').value;
-    const phone = document.getElementById('user-phone').value;
-    const address = document.getElementById('user-address').value;
-    const method = document.getElementById('payment-method').value;
-    const amount = document.getElementById('order-amount').value;
-    const model = document.getElementById('phone-model').value; 
-
-    if(name == "" || phone == "" || address == "") {
-        alert("Please fill all information!");
-        return;
-    }
-
-    
-    document.getElementById('v-date').innerText = new Date().toLocaleString();
-    document.getElementById('v-name').innerText = name;
-    document.getElementById('v-phone').innerText = phone;
-    document.getElementById('v-address').innerText = address;
-    document.getElementById('v-method').innerText = method;
-    document.getElementById('v-amount').innerText = amount;
-    document.getElementById('v-model').innerText = model;
-
-    
-    document.getElementById('voucher-modal').style.display = 'flex';
-}
-
-function closeVoucher() {
-    document.getElementById('voucher-modal').style.display = 'none';
-    document.getElementById('checkout-section').style.display = 'none'; 
-}
-
-function printVoucher() {
-    window.print(); 
-}
-
-document.getElementById('payment-method').addEventListener('change', function() {
-    const shopNumberInput = document.getElementById('shop-payment-number');
-    if (this.value === 'KBZ PAY') {
-        shopNumberInput.value = '09 69245 4680 (Kpay Name)';
-    } else {
-        shopNumberInput.value = '09 42000 3781 (Wave Name)';
-    }
-});
-
 </script>
 
 </body>
