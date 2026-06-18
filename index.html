@@ -3,901 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Mobile World</title>
-    <style>
-
-:root {
-    --main-bg: #f4f7f6;
-    --card-bg: #ffffff;
-    --text-color: #000000;
-    --header-bg: #ffffff;
-    --input-bg: #ffffff;
-    --input-border: #ddd;
-}
-
-.dark-mode {
-    --main-bg: #121212;
-    --card-bg: #1e1e1e;
-    --text-color: #ffffff;
-    --header-bg: #1a1a1a;
-    --input-bg: #333333;
-    --input-border: #444444;
-}
-
-
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--main-bg);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    transition: 0.3s; 
-}
-
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 50px;
-    background-color: var(--header-bg);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--card-bg);
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    border: 1px solid transparent;
-}
-
-.dark-mode .product-card {
-    border: 1px solid var(--input-border);
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-.product-card img {
-    width: 100%;
-    max-width: 180px;
-    height: auto;
-    margin: 0 auto 15px;
-}
-
-
-.price {
-    color: #e44d26;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-button.view-btn, .add-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.2s;
-}
-
-button.view-btn:hover {
-    background-color: #0056b3;
-}
-
-input[type="text"] {
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid var(--input-border);
-    background-color: var(--input-bg);
-    color: var(--text-color);
-    outline: none;
-    width: 200px;
-}
-
-
-.main-footer, 
-.main-footer p, 
-.main-footer h2, 
-.main-footer div,
-.footer-bottom {
-    color: #ffffff !important; 
-}    
-
-
-.main-footer {
-    background-color: #111111;
-    padding: 50px 20px;
-    border-top: 1px solid #333;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around; 
-    max-width: 1100px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.footer-about h2 {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.footer-about p {
-    max-width: 300px;
-    line-height: 1.6;
-    color: #bbb;
-}
-
-.app-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.app-buttons img {
-    height: 40px;
-    width: auto;
-}
-.footer-bottom {
-    text-align: center !important;
-    width: 100%;
-    padding: 0px 0;
-    border-top: 1px solid #333;
-    color: #888 !important; 
-    margin-top: 0px;
-}
-
-#checkout-section {
-    max-width: 600px;
-    margin: 40px auto; 
-    padding: 30px;
-    background-color: var(--card-bg); 
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    text-align: left; 
-}
-
-#checkout-section label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-#checkout-section input, 
-#checkout-section select, 
-#checkout-section textarea {
-    width: 100%; 
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid var(--input-border);
-    border-radius: 8px;
-    background-color: var(--input-bg);
-    color: var(--text-color);
-    box-sizing: border-box; 
-    font-size: 16px;
-}
-
-
-.submit-btn {
-    width: 100%;
-    background-color: #28a745;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: #218838;
-}
-
-#checkout-section input, 
-#checkout-section textarea, 
-#checkout-section select {
-    background-color: var(--input-bg) !important; 
-    color: var(--text-color) !important;
-    border: 1px solid var(--input-border) !important;
-    padding: 12px;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-}
-
-
-::placeholder {
-    color: #888 !important;
-    opacity: 1; 
-}
-#telegram-contact {
-    position: flex;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    transition: 0.3s;
-}
-
-
-#telegram-contact span {
-    color: var(--text-color);
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-
-#telegram-contact:hover {
-    transform: scale(1.1); 
-}
-
-@media screen and (max-width: 768px) {
-    
-    header {
-        flex-direction: column !important;
-        padding: 20px 10px !important;
-        text-align: center !important;
-    }
-
-    header div {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px !important;
-    }
-
-    header input {
-        width: 90% !important;
-    }
-
-    
-    .product-container {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        padding: 10px !important;
-    }
-
-    
-    #telegram-contact {
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        background: #0088cc;
-        padding: 8px;
-        border-radius: 50px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        z-index: 10000;
-    }
-
-    #telegram-contact span {
-        display: none !important;
-    }
-}
-    
-    </style>
+    <title>HEIN MOBILE WORLD</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <h1 style="margin: 0; font-size: 24px;">HEIN MOBILE WORLD</h1>
-
-    <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-        Address: 2F-204, Myanmar Plaza 192, Yangon<br>
-        Hours: Open 6AM Closes 7PM<br>
-        Phone: 09 45222 8886
-    </p>
-
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <input type="text" placeholder="Search phones...">
-        <button id="mode-toggle" style="padding: 8px 15px; cursor:pointer; border-radius: 20px; border: 1px solid #ddd;">🌙 Dark Mode</button>
-    </div>
-
-    <a href="https://telegram.dog/luris_god" target="_blank" id="telegram-contact" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="35" height="35">
-    <span style="font-size: 14px; font-weight: bold;">Chat with us (Need VPN)</span>
-</a>
-
-</header>
-
-<div class="product-container">
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg" alt="Apple iPhone 15"> 
-        <h3>Apple iPhone 15 Pro Max</h3>
-        <p class="price">4,500,000 MMK</p>
-        
-        <a href="https://www.gsmarena.com/apple_iphone_15_pro_max-12548.php">
-        <button class="view-btn">View Details</button>
+    <header>
+        <h1 style="margin: 0; font-size: 24px;">HEIN MOBILE WORLD</h1>
+        <p style="margin: 0; font-size: 14px; line-height: 1.4;">
+            Address: 2F-204, Myanmar Plaza 192, Yangon<br>
+            Hours: Open 6AM Closes 7PM<br>
+            Phone: 09 45222 8886
+        </p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <input id="search-input" type="text" placeholder="Search phones, brands, specs...">
+            <select id="category-filter">
+                <option value="">All Categories</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="OnePlus">OnePlus</option>
+            </select>
+            <select id="price-sort">
+                <option value="">Sort by Price</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+            </select>
+            <button id="admin-access-btn" onclick="enterAdmin()" style="padding: 8px 15px; cursor:pointer; border-radius: 20px; border: 1px solid var(--input-border); background: #007bff; color: white;">Admin Login</button>
+            <button id="mode-toggle" style="padding: 8px 15px; cursor:pointer; border-radius: 20px; border: 1px solid var(--input-border); background: transparent; color: inherit;">🌙 Dark Mode</button>
+            
+            <div class="cart-icon-container" onclick="toggleCart(true)">
+                <span style="font-size: 22px;">🛒</span>
+                <span class="cart-count-badge" id="cart-global-count">0</span>
+            </div>
+        </div>
+        <a href="https://telegram.dog/luris_god" target="_blank" id="telegram-contact" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="35" height="35">
+            <span>Chat with Admin</span>
         </a>
+    </header>
 
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple iPhone 15 Pro Max', 4500000)" style="background-color:darkgray ; color:white; border:none;padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
+    <section class="search-filter-bar">
+        <div class="filter-group">
+            <label for="price-range">Max Price:</label>
+            <input id="price-range" type="range" min="0" max="25000000" step="100000" value="25000000">
+            <span id="price-range-value">25,000,000 MMK</span>
+        </div>
+    </section>
 
+    <div class="product-container" id="products-list-ui"></div>
+
+    <div id="cart-sidebar-panel" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h3 style="margin:0;">🛒 Shopping Cart</h3>
+            <button onclick="toggleCart(false)" style="background:transparent; border:none; color:inherit; font-size:24px; cursor:pointer;">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cart-items-wrapper"></div>
+        <div class="cart-sidebar-footer">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold; font-size:16px;">
+                <span>Total Amount:</span>
+                <span id="cart-total-price-text" style="color:#e44d26;">0 MMK</span>
+            </div>
+            <button class="add-btn" style="margin:0;" onclick="triggerCartCheckout()">Proceed to Checkout</button>
+            <button class="view-btn" style="margin:10px 0 0;" onclick="emptyCart()">Clear Cart</button>
+        </div>
     </div>
 
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s25-ultra-sm-s938-1.jpg" alt="Samsung S25 Ultra">
-        <h3>Samsung S25 Ultra</h3>
-        <p class="price">4,600,000 MMK</p>
-        
-        <a href="https://www.gsmarena.com/samsung_galaxy_s25_ultra-13322.php">
-        <button class="view-btn">View Details</button>
-        </a>
-        
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Samsung S25 Ultra', 4600000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-17-pro-max-3.jpg" alt="Xiaomi 17 Pro Max">
-        <h3>Xiaomi 17 Pro Max</h3>
-        <p class="price">2,800,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/xiaomi_17_pro_max_5g-14181.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Xiaomi 17 Pro Max',2800000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
+    <div id="detail-modal" class="custom-modal">
+        <div class="detail-modal-content">
+            <h2 id="modal-p-name" style="margin-top:0;">Product Name</h2>
+            <div style="text-align:center; margin-bottom: 15px; background: white; padding: 10px; border-radius: 8px;">
+                <img id="modal-p-img" src="" style="max-width:180px; height:180px; object-fit:contain;">
+            </div>
+            <h3 id="modal-p-price" style="color: #e44d26; margin: 10px 0;">0 MMK</h3>
+            
+            <h4 style="margin-bottom:5px; border-bottom: 1px solid var(--input-border); padding-bottom:5px;">Specifications / Details:</h4>
+            <p id="modal-p-desc" style="line-height:1.5; white-space: pre-line; font-size:14px; margin-top:5px; opacity: 0.9;">No details available.</p>
+            
+            <div style="margin-top:20px; display:flex; gap:10px;">
+                <button id="modal-add-cart-btn" class="add-btn" style="margin:0; width:100%;">Add to Cart</button>
+                <button onclick="closeDetails()" style="background:#6c757d; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold; width:100%;">Close</button>
+            </div>
+        </div>
     </div>
 
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-turbo-5-max-1.jpg" alt="Xiaomi Redmi Turbo 5 Max">
-        <h3>Xiaomi Redmi Turbo 5 Max</h3>
-        <p class="price">1,300,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/xiaomi_redmi_turbo_5_max_5g-pictures-14453.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Xiaomi Redmi Turbo 5 Max',1300000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-turbo-6.jpg" alt="Oneplus Turbo 6">
-        <h3>Oneplus Turbo 6</h3>
-        <p class="price">1,999,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/oneplus_turbo_6_5g-14260.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Oneplus Turbo 6',1999000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/bigpic/infinix-note60-pro.jpg" alt="Infinix Note 60 Pro">
-        <h3>Infinix Note 60 Pro</h3>
-        <p class="price">1,400,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/infinix_note_60_pro_5g-14499.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Infinix Note 60 Pro',1400000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-17-pro-max-1.jpg" alt="Apple IPhone 17 Pro Max">
-        <h3>Apple IPhone 17 Pro Max</h3>
-        <p class="price">9,000,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_iphone_17_pro_max-13964.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple IPhone 17 Pro Max',9000000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-k90-pro-max-1.jpg" alt="Redmi K90 Pro Max">
-        <h3>Redmi K90 Pro Max</h3>
-        <p class="price">2,280,000 MMK</p>
-
-        <a href="hhttps://www.gsmarena.com/xiaomi_redmi_k90_pro_max_5g-pictures-14252.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Redmi K90 Pro Max',2280000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-air-1.jpg" alt="IPhone Air">
-        <h3>Apple IPhone Air</h3>
-        <p class="price">6,000,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_iphone_17_air-pictures-13502.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple IPhone Air',6000000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg" alt="IPhone 16 Pro Max">
-        <h3>Apple IPhone 16 Pro Max</h3>
-        <p class="price">4,550,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_iphone_16_pro_max-pictures-13123.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple IPhone 16 Pro Max',4550000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-
-        <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-13-pro-max-01.jpg" alt="IPhone 13 Pro Max">
-        <h3>Apple IPhone 13 Pro Max</h3>
-        <p class="price">2,100,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_iphone_13_pro_max-pictures-11089.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple IPhone 13 Pro Max',2100000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-z-trifold-2.jpg" alt="Samsung Galaxy Z TriFold">
-        <h3>Samsung Galaxy Z TriFold</h3>
-        <p class="price">32,000,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/samsung_galaxy_z_trifold_5g-pictures-14292.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Samsung Galaxy Z TriFold',32000000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-        <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-z-flip7-5.jpg" alt="Samsung Galaxy Z Flip7">
-        <h3>Samsung Galaxy Z Flip7</h3>
-        <p class="price">8,500,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/samsung_galaxy_z_flip7-pictures-13712.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Samsung Galaxy Z Flip7',8500000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-        <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/oppo/oppo-reno15-fs-1.jpg" alt="Oppo Reno15 FS">
-        <h3>Oppo Reno15 FS</h3>
-        <p class="price">1,800,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/oppo_reno15_fs_5g-pictures-14373.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Oppo Reno15 FS',1800000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/oppo/oppo-find-x8-ultra-1.jpg" alt="Oppo Find X8 Ultra">
-        <h3>Oppo Find X8 Ultra</h3>
-        <p class="price">4,500,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/oppo_find_x8_ultra-pictures-13753.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Oppo Find X8 Ultra',4500000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-        <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-note-15-pro-global-1.jpg" alt="Xiaomi Redmi Note 15 Pro 5G">
-        <h3>Xiaomi Redmi Note 15 Pro 5G</h3>
-        <p class="price">1,590,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/xiaomi_redmi_note_15_pro_5g_(global)-pictures-14327.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Xiaomi Redmi Note 15 Pro 5G',1590000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn.gsmarena.com/imgroot/news/25/10/iqoo-neo11-launch-china/inline/-1200/gsmarena_001.jpg" alt="IQOO NEO 11">
-        <h3>IQOO NEO 11</h3>
-        <p class="price">1,900,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/iqoo_neo11_debuts_with_snapdragon_8_elite_soc_7500mah_battery-news-70098.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('IQOO NEO 11',1900000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-ace6-1.jpg" alt="ONEPLUS ACE 6">
-        <h3>ONEPLUS ACE 6</h3>
-        <p class="price">1,990,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/oneplus_ace_6_5g-pictures-14259.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('ONEPLUS ACE 6',1990000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now 
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/oppo/oppo-k13-turbo-pro-02.jpg" alt="Oppo K13 Turbo Pro">
-        <h3>Oppo K13 Turbo Pro</h3>
-        <p class="price">2,100,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/oppo_k13_turbo_pro_5g-pictures-14013.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Oppo K13 Turbo Pro',2100000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-pro-13-2024-2.jpg" alt="Apple iPad Pro 13">
-        <h3>Apple iPad Pro 13</h3>
-        <p class="price">5,890,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_ipad_pro_13_(2024)-12987.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple iPad Pro 13',5890000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-        <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-air-13-2024-2.jpg" alt="Apple iPad Air 13">
-        <h3>Apple iPad Air 13</h3>
-        <p class="price">5,400,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/apple_ipad_air_13_(2024)-pictures-12985.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Apple iPad Air 13',5400000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now 
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-mix-flip2-1.jpg" alt="Xiaomi Mix Flip 2">
-        <h3>Xiaomi Mix Flip 2</h3>
-        <p class="price">4,500,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/xiaomi_mix_flip_2_5g-pictures-13980.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Xiaomi Mix Flip 2',4500000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone-3a-lite-1.jpg" alt="Nothing Phone (3a) Lite">
-        <h3>Nothing Phone (3a) Lite</h3>
-        <p class="price">1,200,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/nothing_phone_(3a)_lite_5g-pictures-14267.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Nothing Phone (3a) Lite',1200000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    <div class="product-card">
-        <img src="https://fdn2.gsmarena.com/vv/pics/google/google-pixel-10-pro-11.jpg" alt="Google Pixel 10 Pro">
-        <h3>Google Pixel 10 Pro</h3>
-        <p class="price">3,500,000 MMK</p>
-
-        <a href="https://www.gsmarena.com/google_pixel_10_pro_5g-pictures-13987.php">
-        <button class="view-btn">View Details</button>
-        </a>
-
-        <br>
-        
-        <button class="add-btn" onclick="showCheckout('Google Pixel 10 Pro',3500000)" style="background-color:darkgray ; color:white; border:none;
-        padding:10px; border-radius: 5px; cursor:pointer; margin: top 5px;">
-            Buy Now
-        </button>
-    </div>
-    
-</div>
-    
-    <section id="checkout-section" style="display:none; padding: 50px;">
-    <div style="max-width: 500px; margin: auto; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <section id="checkout-section" style="display:none;">
         <h2 style="text-align: center;">Checkout Information</h2>
-        <div id="form-group">
-        <label>Phone Model:</label>
-        <input type="text" id="phone-model" style="width:100%; padding:10px; margin: 10px 0; background-color: #eee;" readonly>
-
+        <div>
+            <label>Selected Items Summary:</label>
+            <textarea id="phone-model" rows="4" readonly style="width:100%; border-radius:8px; resize:none; background:rgba(0,0,0,0.03);"></textarea>
+            
             <label>Customer Name:</label>
-            <input type="text" id="user-name" 
-            style="width:100%; padding:10px; margin: 10px 0;" placeholder="Enter your name">
-            
+            <input type="text" id="user-name" placeholder="Enter your name">
             <label>Delivery Address:</label>
-            <textarea id="user-address" style="width:100%; padding:10px; margin: 10px 0;" placeholder="Enter your address"></textarea>
-
+            <textarea id="user-address" placeholder="Enter your address" rows="3"></textarea>
             <label>Your Phone Number:</label>
-            <input type="tel" id="user-phone" style="width:100%; padding:10px; margin: 10px 0;" placeholder="09xxxxxxxxx">
-
+            <input type="tel" id="user-phone" placeholder="09xxxxxxxxx">
             <label>Transfer to this Phone (Shop Number):</label>
-            <input type="text" id="shop-payment-number" style="width:100%; padding:10px; margin: 10px 0; background-color: #eee;" value="09 *********" readonly>
-            
+            <input type="text" id="shop-payment-number" value="09 69245 4680 (Kpay Name)" readonly>
             <label>Payment Method:</label>
-            <select id="payment-method" style="width:100%; padding:10px; margin: 10px 0;">
+            <select id="payment-method">
                 <option value="KBZ PAY">KBZ PAY</option>
                 <option value="Wave Pay">Wave Pay</option>
             </select>
+            <div id="payment-instructions" class="payment-instructions">
+                Please select a payment method to view payment instructions.
+            </div>
+            <label>Upload Payment Screenshot:</label>
+            <input type="file" id="payment-screenshot" accept="image/*">
+            <label>Total Final Amount (MMK):</label>
+            <input type="text" id="order-amount" readonly style="font-weight:bold; color:#e44d26;">
+            <button class="submit-btn" onclick="generateVoucher()">Confirm Order & Get Voucher</button>
+            <button onclick="closeCheckout()" style="width: 100%; margin-top:10px; background: #dc3545; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-size:16px; font-weight:bold;">Cancel</button>
+        </div>
+    </section>
 
-            <label>Total Amount (MMK):</label>
-            <input type="number" id="order-amount" style="width:100%; padding:10px; margin: 10px 0;" readonly>
-
-            <button onclick="generateVoucher()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Confirm Order & Get Voucher</button>
-            <button onclick="closeCheckout()" style="width: 100%; margin-top:10px; background: #dc3545; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Cancel</button>
+    <!-- 🧾 Voucher Modal ထဲတွင် Order ID ပြသရန် ပြုပြင်ထားသည် -->
+    <div id="voucher-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+        <div id="voucher-content" style="background: white; padding: 40px; border-radius: 5px; width: 350px; position: relative; font-family: 'Courier New', Courier, monospace; color: black;">
+            <h3 style="text-align: center; border-bottom: 2px dashed #000; margin-top:0;">HEIN MOBILE WORLD</h3>
+            <p style="text-align: center; font-size: 12px;">OFFICIAL RECEIPT</p>
+            <hr>
+            <p><strong>Order ID:</strong> <span id="v-id" style="font-weight: bold; color: #007bff;"></span></p> <!-- ⭐ တိုးမြှင့်ထားသော နေရာ ၁ -->
+            <p><strong>Date:</strong> <span id="v-date"></span></p>
+            <p><strong>Name:</strong> <span id="v-name"></span></p>
+            <p><strong>Phone:</strong> <span id="v-phone"></span></p>
+            <p><strong>Address:</strong> <span id="v-address"></span></p>
+            <p style="font-size:12px;"><strong>Items List:</strong></p>
+            <div id="v-items-list-box" style="font-size:12px; background:#f9f9f9; padding:5px; border:1px solid #eee; white-space:pre-wrap; max-height:100px; overflow-y:auto;"></div>
+            <p><strong>Payment:</strong> <span id="v-method"></span></p>
+            <hr style="border-top: 1px dashed #000;">
+            <p style="font-size: 20px; text-align: center;"><strong>Total: <span id="v-amount"></span> MMK</strong></p>
+            <hr style="border-top: 2px dashed #000;">
+            <p style="text-align: center; font-size: 12px;">Thank you for shopping with us!</p>
+            <button onclick="window.print()" style="width: 100%; background: #007bff; color: white; border: none; padding: 10px; margin-top: 10px; cursor: pointer; border-radius: 5px; font-weight:bold;">Print / Save PDF</button>
+            <button onclick="closeVoucher()" style="width: 100%; background: #666; color: white; border: none; padding: 10px; margin-top: 5px; cursor: pointer; border-radius: 5px; font-weight:bold;">Close</button>
         </div>
     </div>
-</section>
 
-<div id="voucher-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
-    <div id="voucher-content" style="background: white; padding: 40px; border-radius: 5px; width: 350px; position: relative; font-family: 'Courier New', Courier, monospace; color: black;">
-        <h3 style="text-align: center; border-bottom: 2px dashed #000;">HEIN MOBILE WORLD</h3>
-        <p style="text-align: center; font-size: 12px;">OFFICIAL RECEIPT</p>
-        <hr>
-        <p><strong>Date:</strong> <span id="v-date"></span></p>
-        <p><strong>Name:</strong> <span id="v-name"></span></p>
-        <p><strong>Phone:</strong> <span id="v-phone"></span></p>
-        <p><strong>Address:</strong> <span id="v-address"></span></p>
-        <p><strong>Item:</strong> <span id="v-model" style="color: blue; font-weight: bold;"></span></p>
-        <p><strong>Payment:</strong> <span id="v-method"></span></p>
-        <hr style="border-top: 1px dashed #000;">
-        <p style="font-size: 20px; text-align: center;"><strong>Total: <span id="v-amount"></span> MMK</strong></p>
-        <hr style="border-top: 2px dashed #000;">
-        <p style="text-align: center; font-size: 12px;">Thank you for shopping with us!</p>
-        
-        <button onclick="window.print()" style="width: 100%; background: #007bff; color: white; border: none; padding: 10px; margin-top: 10px; cursor: pointer; border-radius: 5px;">Print / Save PDF</button>
-        <button onclick="closeVoucher()" style="width: 100%; background: #666; color: white; border: none; padding: 10px; margin-top: 5px; cursor: pointer; border-radius: 5px;">Close</button>
+    <div id="toast"></div>
+    <div id="loading-overlay"><div class="loader"></div></div>
+
+    <div id="admin-dashboard">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2 style="margin: 0;">🔧 Hein Mobile Admin Dashboard</h2>
+                <button onclick="closeAdmin()" style="background:#dc3545; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:bold;">Exit Dashboard</button>
+            </div>
+            <div class="admin-layout">
+                <div class="admin-sidebar">
+                    <button class="admin-tab-btn active" onclick="switchTab('products-panel', this)">📦 Products</button>
+                    <button class="admin-tab-btn" onclick="switchTab('orders-panel', this)">🛒 Order Logs</button>
+                </div>
+                <div class="admin-main">
+                    <div id="products-panel" class="admin-panel active">
+                        <h3>Add / Update Product</h3>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; background: rgba(0,0,0,0.02); padding:15px; border-radius:8px; border: 1px solid var(--input-border);">
+                            <div class="admin-form-group">
+                                <label>Product Name</label>
+                                <input type="text" id="admin-p-name" placeholder="e.g., iPhone 15 Pro Max">
+                            </div>
+                            <div class="admin-form-group">
+                                <label>Price (MMK)</label>
+                                <input type="number" id="admin-p-price" placeholder="e.g., 4500000">
+                            </div>
+                            <div class="admin-form-group">
+                                <label>Category</label>
+                                <select id="admin-p-category">
+                                    <option value="Apple">Apple</option>
+                                    <option value="Samsung">Samsung</option>
+                                    <option value="Xiaomi">Xiaomi</option>
+                                    <option value="OnePlus">OnePlus</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="admin-edit-id">
+                            <div class="admin-form-group" style="grid-column: span 2;">
+                                <label>Upload Product Image</label>
+                                <input type="file" id="admin-p-image" accept="image/*" style="width:100%;">
+                            </div>
+                            <div class="admin-form-group" style="grid-column: span 2;">
+                                <label>Specifications / Details</label>
+                                <textarea id="admin-p-desc" rows="4" placeholder="Display: 6.7 inches&#10;Camera: 48MP&#10;Battery: 4441 mAh"></textarea>
+                            </div>
+                            <button id="admin-save-btn" onclick="saveProduct()" style="grid-column: span 2; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer;">Save Product</button>
+                            <button type="button" onclick="cancelProductEdit()" style="grid-column: span 2; background:#6c757d; color:white; border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:5px;">Cancel Edit</button>
+                        </div>
+                        
+                        <h3>Current Products List</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price (MMK)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div id="orders-panel" class="admin-panel">
+                        <h3>Recent Customer Orders</h3>
+                        <button onclick="clearOrders()" style="background:#6c757d; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; margin-bottom:10px;">Clear All Logs</button>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th> <!-- ⭐ တိုးမြှင့်ထားသော နေရာ ၂ -->
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Item</th>
+                                    <th>Total</th>
+                                    <th>Method</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-    
+        
     <footer class="main-footer">
     <div class="footer-container">
+        
         <div class="footer-about">
             <h2>HEIN MOBILE WORLD</h2>
             <p>Hein Mobile World, best retail store for Smartphones, founded in 2012. We provide our customers with the best after sale services.</p>
         </div>
-
-        <div class="footer-apps">
-            <p>Download our application</p>
-            <div class="app-buttons">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
-            </div>
+        
+        <div class="footer-copyright">
+            <p id="footer-secret-trigger">© 2026 Hein Mobile World</p>
         </div>
-
+        
         <div class="footer-contact">
-            <p> Address: 2F-204, Myanmar Plaza 192, Yangon</p>
-            <p> 09 69245 4680</p>
-            <p> Follow us on Facebook</p>
+            <p><strong>Address:</strong> 2F-204, Myanmar Plaza 192, Yangon</p>
+            <p><strong>Phone:</strong> 09 69245 4680</p>
+            <p><a href="#" style="color: #fff; text-decoration: none;">Follow us on Facebook</a></p>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>2026  Hein Mobile World</p>
+
     </div>
 </footer>
 
-
-<script>
-    
-    const toggleBtn = document.getElementById('mode-toggle');
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggleBtn.innerText = document.body.classList.contains('dark-mode') ? "☀️ Light Mode" : "🌙 Dark Mode";
-    });
-
-    // Search Functionality
-    const searchInput = document.querySelector('input[type="text"]');
-    const cards = document.querySelectorAll('.product-card');
-    searchInput.addEventListener('input', (e) => {
-        const value = e.target.value.toLowerCase();
-        cards.forEach(card => {
-            const isVisible = card.querySelector('h3').innerText.toLowerCase().includes(value);
-            card.style.display = isVisible ? "flex" : "none";
-        });
-    });
-
-    function showCheckout(modelName, amount) {
-        history.pushState({view:'checkout'}, "Checkout", "#checkout");
-        document.getElementById('checkout-section').style.display = 'block';
-        document.getElementById('phone-model').value = modelName;
-        document.getElementById('order-amount').value = amount;
-        window.scrollTo({top: document.getElementById('checkout-section').offsetTop, behavior: 'smooth'});
-    }
-
-    function closeCheckout() {
-        document.getElementById('checkout-section').style.display = 'none';
-    }
-
-    function generateVoucher() {
-        const name = document.getElementById('user-name').value;
-        const phone = document.getElementById('user-phone').value;
-        const address = document.getElementById('user-address').value;
-        const method = document.getElementById('payment-method').value;
-        const amount = document.getElementById('order-amount').value;
-        const model = document.getElementById('phone-model').value; 
-
-        if(name === "" || phone === "" || address === "") {
-            alert("Please fill all information!");
-            return; 
-        }
-
-        confirmOrder(name, phone, address, model, amount);
-
-        document.getElementById('v-date').innerText = new Date().toLocaleString();
-        document.getElementById('v-name').innerText = name;
-        document.getElementById('v-phone').innerText = phone;
-        document.getElementById('v-address').innerText = address;
-        document.getElementById('v-method').innerText = method;
-        document.getElementById('v-amount').innerText = amount;
-        document.getElementById('v-model').innerText = model;
-
-        
-        document.getElementById('voucher-modal').style.display = 'flex';
-    }
-
-    function confirmOrder(name, phone, address, model, amount) {
-        const token = "7838934638:AAFqT4Bi94xRsPOBFhUg4haiLVTnhdmwU_c"; 
-        const chat_id = "7764154754"; 
-
-        
-        const message = `📱 *New Order Received!*\n\n` +
-                        `📦 *Model:* ${model}\n` +
-                        `💰 *Price:* ${amount} MMK\n` +
-                        `👤 *Name:* ${name}\n` +
-                        `📞 *Phone:* ${phone}\n` +
-                        `🏠 *Address:* ${address}`;
-
-        const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
-
-        fetch(url).then(response => {
-            if (response.ok) {
-                console.log("Order sent to Telegram successfully!");
-            }
-        }).catch(err => console.error("Telegram error:", err));
-    }
-
-    function closeVoucher() {
-        document.getElementById('voucher-modal').style.display = 'none';
-        document.getElementById('checkout-section').style.display = 'none'; 
-    }
-
-    document.getElementById('payment-method').addEventListener('change', function() {
-        const shopNumberInput = document.getElementById('shop-payment-number');
-        if (this.value === 'KBZ PAY') {
-            shopNumberInput.value = '09 69245 4680 (Kpay Name)';
-        } else {
-            shopNumberInput.value = '09 42000 3781 (Wave Name)';
-        }
-    });
-</script>
-
+    <button id="mobile-checkout-btn" class="mobile-checkout-btn" onclick="triggerCartCheckout()">Checkout</button>
+    <script src="app.js"></script>
 </body>
 </html>
