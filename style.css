@@ -28,7 +28,7 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
-    padding-top: 110px; /* Fixed Navbar အောက်ထဲ content တွေ တိုးမဝင်အောင် padding ညှိထားတယ် */
+    padding-top: 160px; /* Fixed Navbar အောက်ထဲ content တွေ တိုးမဝင်အောင် padding ညှိထားတယ် */
     transition: background-color 0.3s, color 0.3s; 
 }
 
@@ -130,15 +130,13 @@ header select {
     background-color: transparent;
 }
 
-/* Buttons Styling */
 header button, 
-header #admin-access-btn {
-    padding: 7px 14px;
-    border-radius: 44px;
-    font-weight: 600;
-    font-size: 12px;
-    cursor: pointer;
-}
+    header #admin-access-btn,
+    header a#telegram-contact {
+        width: auto !important;
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
 
 /* Telegram Contact Link */
 header a#telegram-contact {
@@ -385,59 +383,93 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="file"],
     box-sizing: border-box;
 }
 
+/* ==========================================================================
+   🧼 CLEAN & SLIM INLINE FOOTER SYSTEM (အမြင့် သိသိသာသာ သေးသွားစေရန်)
+   ========================================================================== */
+
 .main-footer {
     background-color: #111111;
-    padding: 60px 20px;
-    border-top: 1px solid #333;
     color: #ffffff;
-}
-
-.main-footer h2 {
-    color: #ffffff;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-.main-footer p {
-    color: #bbb;
-    font-size: 14px;
-    line-height: 1.7;
+    padding: 22px 24px; /* Padding လျှော့ချပြီး အမြင့်ကို သေးသေးလေးဖြစ်အောင် ထိန်းထားခြင်း */
+    border-top: 1px solid #222;
+    font-size: 13px;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between; 
-    align-items: flex-start;
+    align-items: center; /* စာသားအားလုံး ဘေးတိုက် တစ်လိုင်းတည်း အလယ်ကျကျဖြစ်စေရန် */
     max-width: 1200px;
     margin: 0 auto;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
 }
 
-.footer-about, .footer-copyright, .footer-contact {
+.footer-about {
     flex: 1;
     min-width: 250px;
 }
 
+/* နေရာပွစေသော Footer ထဲက Heading Logo ကြီးကို ဖျောက်ထားခြင်း */
+.main-footer h2 {
+    display: none; 
+}
+
+.footer-about p {
+    margin: 0;
+    color: #888888;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
 .footer-copyright {
     text-align: center;
-    align-self: center;
+    color: #aaaaaa;
+    white-space: nowrap;
 }
 
 #footer-secret-trigger {
     cursor: pointer;
     user-select: none;
-    color: #fff !important;
+    color: #ffffff !important;
     display: inline-block;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
+#footer-secret-trigger:hover {
+    color: #007bff !important;
+}
+
+/* Contact Details များကို အောက်မဆင်းဘဲ ဘေးတိုက် စီထားခြင်း */
 .footer-contact {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #888888;
+    text-align: right;
 }
 
 .footer-contact p {
-    margin: 8px 0;
+    margin: 0;
+    white-space: nowrap;
 }
+
+.footer-contact a {
+    color: #3b5998;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+    color: #4c70ba;
+    text-decoration: underline;
+}
+
+/* ----------------------------------------------------
+   📦 CHECKOUT & MODALS STYLES
+------------------------------------------------------- */
 
 #checkout-section {
     max-width: 600px;
@@ -781,9 +813,9 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="file"],
    📱 MEDIA QUERIES RESPONSIVE SYSTEM
 ------------------------------------------------------- */
 @media screen and (max-width: 768px) {
-    /* 1. Header Area - Mobile Responsive (တစ်တန်းတည်း ကျစ်ကျစ်လျစ်လျစ် ဖြစ်စေရန်) */
+    /* 1. Header Area - Mobile Responsive */
     header {
-        flex-direction: row !important; /* အောက်မဆင်းစေဘဲ ညာဘက်သို့ ဆက်သွားစေရန် */
+        flex-direction: row !important; 
         justify-content: space-between !important;
         gap: 8px !important;
         padding: 8px 16px !important;
@@ -793,10 +825,9 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="file"],
     }
 
     header h1 {
-        font-size: 13px !important; /* ဖုန်းမှာ Logo ဆန့်စေရန် အနည်းငယ်သေးထားတယ် */
+        font-size: 13px !important; 
     }
 
-    /* ဖုန်းပေါ်တွင် မလိုအပ်သော စာသားများနှင့် အချို့ filter များကို ဖျောက်ထားပြီး UI ရှင်းစေရန် */
     header p,
     header select,
     header a#telegram-contact span { 
@@ -809,7 +840,6 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="file"],
         gap: 6px !important;
     }
 
-    /* Mobile ပေါ်တွင် Input နှင့် Button များကို ကျစ်လျစ်စွာထားခြင်း */
     header input[type="text"] {
         width: 100px !important;
         padding: 6px 12px !important;
@@ -893,19 +923,23 @@ input[type="text"], input[type="number"], input[type="tel"], input[type="file"],
         -webkit-overflow-scrolling: touch;
     }
 
-    /* 7. Footer Layout */
+    /* 7. Footer Mobile Clean Layout (ကျစ်ကျစ်လျစ်လျစ် တစ်လိုင်းစီဆင်းပေးခြင်း) */
     .footer-container {
         flex-direction: column !important;
-        text-align: center;
-        gap: 30px;
+        text-align: center !important;
+        gap: 12px !important;
     }
 
-    .app-buttons {
-        justify-content: center;
+    .footer-about p {
+        font-size: 12px;
+        color: #666666;
     }
 
-    .main-footer .footer-container {
+    .footer-contact {
+        flex-direction: column !important; /* ဖုန်းပေါ်မှာ Contact Details ကို အလယ်တည့်တည့်ကနေ စီပေးရန် */
         align-items: center !important;
+        gap: 6px !important;
+        text-align: center !important;
     }
 }
 
